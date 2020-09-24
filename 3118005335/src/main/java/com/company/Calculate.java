@@ -5,13 +5,13 @@ public class Calculate {
     {
         float resultFloat=0.00f;
         //分语义行切割作业内容
-        String desArray[]=Separateword.split(des);
-        String srcArray[]=Separateword.split(src);
+        String[] desArray =Separateword.split(des);
+        String[] srcArray =Separateword.split(src);
         //对作业内容中非自然语言进行清洗除杂
         // desArray=clean(desArray);
         // srcArray=clean(srcArray);
         for (String s:desArray)
-            resultFloat+=checkSingleLineWithSrcArray(s,srcArray);
+            resultFloat = resultFloat + checkSingleLineWithSrcArray(s, srcArray);
         resultFloat/=desArray.length;
         return resultFloat;
     }
@@ -33,10 +33,8 @@ public class Calculate {
     public static float checkSingleLineWithSingleLine(String line,String src)
     {
         float result;
-        String s1 = line;
-        String s2 = src;
-        String max = s1.length() >= s2.length()?s1:s2;
-        String min = s1.length() >= s2.length()?s2:s1;
+        String max = line.length() >= src.length()? line : src;
+        String min = line.length() >= src.length()? src : line;
         int l = 0;
         String s ="";
         for(int i=0;i<min.length();i++){
@@ -61,7 +59,7 @@ public class Calculate {
                 if (s1.charAt(i)==s2.charAt(j))
                     count++;
         result=count;
-        result/=((s1.length()+s2.length())/2);
+        result/=((double) (s1.length() + s2.length()) /2);
         return result;
     }
 }
