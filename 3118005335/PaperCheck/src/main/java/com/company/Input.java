@@ -1,4 +1,4 @@
-package com.company.java.com.company;
+package com.company;
 import java.text.DecimalFormat;
 
 public class Input {
