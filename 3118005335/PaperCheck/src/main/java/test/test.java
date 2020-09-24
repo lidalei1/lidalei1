@@ -1,6 +1,7 @@
 package test;
 
 import com.company.Calculate;
+import com.company.EmptyFileException;
 import com.company.Output;
 import com.company.Separateword;
 import org.junit.Test;
@@ -30,6 +31,23 @@ public class test {
             Output.output(ansFileName,ans);
 
         }
+    }
+
+    @Test
+    public void fileReadTest(){
+        String str = Separateword.ReadtoString("D:/Idea/IdeaProject/txt1/tests/orig.txt");
+        System.out.println(str);
+    }
+
+    @Test
+    public void fileWriteTest(){
+        Output.output("D:/Idea/IdeaProject/txt1/tests/ans.txt","0.85");
+    }
+
+    @Test
+    public void emptyFileTest() throws EmptyFileException {
+        String str = Separateword.ReadtoString("D:/Idea/IdeaProject/txt1/tests/empty.txt");
+        System.out.println(str);
     }
 
     @Test

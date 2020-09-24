@@ -4,18 +4,25 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Separateword {
-    private static final String html_seperator="<br>";
-    private static final String sentence_seperator="[,.;!:，。；!：]";
+    private static final String html_seperator;
+    private static final String sentence_seperator;
+
+    static {
+        html_seperator = "<br>";
+        sentence_seperator = "[,.;!:，。；：]";
+    }
+
     public static String[] split(String src)
     {
         List<String> result=new ArrayList<>();
         String []htmls=src.split(html_seperator);
-        for (String s:htmls)
-            for (String s2:s.split(sentence_seperator))
-                result.add(s2);
+        for (String s:htmls) {
+            boolean b = Collections.addAll(result, s.split(sentence_seperator));
+        }
         String []results=new String[result.size()];
         result.toArray(results);
         return results;
@@ -44,6 +51,9 @@ public class Separateword {
             str=new String(buffer,"UTF-8");
         }catch(IOException e){
             e.printStackTrace();
+        }
+        if (str.length() == 0){
+            throw new EmptyFileException("这个文件是空文件");
         }
         return str;
     }
